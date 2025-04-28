@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+
+  html{
+      @apply font-mono bg-gray-300  text-black dark:text-white dark:bg-gray-700 transition; 
+  }
+  
+  .mainDiv{
+      @apply bg-gray-400 dark:bg-gray-900;
+  }
+
+  button{
+      @apply px-3 text-sm py-2 rounded-lg cursor-pointer transition 
+      hover:duration-400 hover:opacity-80 hover:scale-110
+      disabled:bg-slate-400/30 disabled:cursor-auto 
+      hover:disabled:opacity-100 hover:disabled:scale-none;
+  }
+
+  .primary-btn{
+      @apply bg-blue-600 font-bold text-[15px] text-white dark:text-black dark:bg-amber-300;
+  }
+
+  input, textarea{
+      @apply px-1.5 outline-none py-1 border rounded-sm placeholder:italic placeholder:font-light;
+  }
+
+  option{
+    @apply bg-gray-400 dark:bg-gray-900
+  }
+  .drop-menu{
+      @apply transition inline-block px-3 ml-2;
+  }
+  .drop-menu-options{
+      @apply border rounded-lg p-2 text-center px-3 bg-blue-50 translate-x-7 dark:bg-slate-900;
+  }
+  .drop-menu-options li{
+      @apply cursor-pointer;
+  }
+}
