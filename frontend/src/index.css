@@ -1,10 +1,13 @@
 @import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
+
+html{
+    font-family:cursive
+}
 
 @layer base {
 
   html{
-      @apply font-mono bg-gray-300  text-black dark:text-white dark:bg-gray-700 transition; 
+      @apply transition; 
   }
   
   .mainDiv{
@@ -22,8 +25,12 @@
       @apply bg-blue-600 font-bold text-[15px] text-white dark:text-black dark:bg-amber-300;
   }
 
+  .input-error{
+    @apply border-b-2 border-b-red-700
+  }
+
   input, textarea{
-      @apply px-1.5 outline-none py-1 border rounded-sm placeholder:italic placeholder:font-light;
+      @apply px-1.5 outline-none py-1 placeholder:font-light;
   }
 
   option{

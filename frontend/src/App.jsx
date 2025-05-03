@@ -1,8 +1,9 @@
 import React from 'react'
+import Connect from './pages/Connect'
 
 function App() {
   return (
-    <div>App</div>
+    <div><Connect /></div>
   )
 }
 
