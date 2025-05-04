@@ -3,10 +3,11 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { loginSchema } from "../schemas/LoginSchema";
 import toast, { Toaster } from "react-hot-toast";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Login() {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
     useFormik({
@@ -17,7 +18,7 @@ function Login() {
       validationSchema: loginSchema,
       onSubmit: async (values, { resetForm }) => {
         await handleLogin();
-        resetForm();
+        resetForm()
       },
     });
 
@@ -32,11 +33,14 @@ function Login() {
 
       if (res.data.length > 0) {
         toast.success("Login successful !", { duration: 2000 });
+        navigate("/")
       } else {
         toast.error("Invalid email or password", { duration: 2000 });
+        navigate("/connect/login")
       }
     } catch (err) {
       toast.error("Server error. Try again later", { duration: 2000 });
+      resetForm()
     }
   };
 
@@ -45,11 +49,8 @@ function Login() {
       <form onSubmit={handleSubmit} autoComplete="off">
         <h2 className="text-2xl font-extrabold text-[#00EEFF] mb-4">Login</h2>
 
-        <Toaster position="top-center" />
         <div className="mb-4">
-          <label htmlFor="email" className="text-white">
-            email
-          </label>
+          <label className="text-white">email</label>
           <input
             type="email"
             name="email"
@@ -69,9 +70,7 @@ function Login() {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="email" className="text-white">
-            password
-          </label>
+          <label className="text-white">password</label>
           <input
             type="password"
             name="password"
@@ -98,6 +97,15 @@ function Login() {
           </button>
         </div>
       </form>
+        
+      <p className="mt-4 text-sm text-center text-white">
+        New user?
+        
+          <Link to={"/connect/register"} className="text-[#00EEFF] underline ml-10">
+            Register here
+          </Link>
+        
+      </p>
     </>
   );
 }

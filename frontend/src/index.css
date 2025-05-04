@@ -34,8 +34,9 @@ html{
   }
 
   option{
-    @apply bg-gray-400 dark:bg-gray-900
+    @apply font-light text-[#2c2e45]
   }
+
   .drop-menu{
       @apply transition inline-block px-3 ml-2;
   }

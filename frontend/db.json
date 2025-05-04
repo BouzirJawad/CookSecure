@@ -1,5 +1,20 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": "f8e4",
+      "username": "test",
+      "email": "test@gmail.com",
+      "password": "`12`12",
+      "isAdmin": true
+    },
+    {
+      "id": "01f4",
+      "username": "nn",
+      "email": "nn@nn",
+      "password": "123123",
+      "isAdmin": true
+    }
+  ],
   "recipes": [],
   "ingredients": [
     {
