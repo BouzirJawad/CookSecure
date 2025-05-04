@@ -5,9 +5,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import AsyncSelect from "react-select/async";
 
-function RecipeForm() {
+function RecipeForm({ onClose, reload }) {
   const [preview, setPreview] = useState(null);
-  const [steps, setSteps] = useState([""]);
 
   const formik = useFormik({
     initialValues: {
@@ -26,9 +25,11 @@ function RecipeForm() {
         await axios.post("http://localhost:7460/recipes", values);
         toast.success("Recipe added successfully", { duration: 3000 });
         setTimeout(() => {
+          reload()
+          onClose();
           resetForm();
           setPreview(null);
-        }, 3000);
+        }, 1000);
       } catch (error) {
         console.error("Error adding recipe:", error);
         toast.error("Error adding recipe", { duration: 2000 });
@@ -110,7 +111,7 @@ function RecipeForm() {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="p-4 bg-[#2d2d55] rounded-lg w-[80%] max-w-4xl mx-auto text-white"
+      className="p-4 bg-[#2d2d55] rounded-lg mx-auto text-white"
     >
       <h2 className="text-center text-cyan-400 text-xl font-bold mb-4">
         Make A Recipe
@@ -249,8 +250,8 @@ function RecipeForm() {
           </div>
         ))}
         {formik.touched.steps && formik.errors.steps && (
-            <p className="text-red-500 text-sm">{formik.errors.steps}</p>
-          )}
+          <p className="text-red-500 text-sm">{formik.errors.steps}</p>
+        )}
         <button
           type="button"
           onClick={handleAddStep}
@@ -269,8 +270,8 @@ function RecipeForm() {
           className="w-full p-2 rounded bg-[#3d3d6b] text-white"
         />
         {formik.touched.image && formik.errors.image && (
-            <p className="text-red-500 text-sm">{formik.errors.image}</p>
-          )}
+          <p className="text-red-500 text-sm">{formik.errors.image}</p>
+        )}
         {preview && (
           <img
             src={preview}
@@ -280,7 +281,13 @@ function RecipeForm() {
         )}
       </div>
 
-      <div className="text-center my-5">
+      <div className="text-center flex my-5 gap-10 w-[70%] mx-auto">
+        <button
+          onClick={()=>onClose()}
+          className="mt-6 bg-[#8186BC] hover:bg-[#4f5274] text-black font-bold py-2 px-4 rounded w-[50%]"
+        >
+          Cancel
+        </button>
         <button
           type="submit"
           className="mt-6 bg-cyan-400 hover:bg-cyan-500 text-black font-bold py-2 px-4 rounded w-[50%]"

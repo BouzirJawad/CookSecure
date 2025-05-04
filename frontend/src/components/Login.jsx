@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useFormik } from "formik";
 import { loginSchema } from "../schemas/LoginSchema";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
-
   const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
     useFormik({
       initialValues: {
@@ -32,6 +31,8 @@ function Login() {
       });
 
       if (res.data.length > 0) {
+        const userData = res.data[0]
+        localStorage.setItem("User", JSON.stringify(userData))
         toast.success("Login successful !", { duration: 2000 });
         navigate("/")
       } else {

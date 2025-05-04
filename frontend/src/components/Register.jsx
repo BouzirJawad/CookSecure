@@ -21,8 +21,7 @@ function Register() {
       validationSchema: registerSchema,
       onSubmit: async (values, { resetForm }) => {
         await handleRegister();
-        resetForm();
-        navigate("/connect/login");
+        resetForm()
       },
     });
 
@@ -47,6 +46,7 @@ function Register() {
         });
         
         toast.success("Registering successful!", { duration: 3000 });
+        navigate("/connect/login")
       }
     } catch (err) {
       toast.error("Something went wrong !", {duration: 4000});
