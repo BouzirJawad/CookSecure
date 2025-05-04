@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Connect from './pages/Connect'
-import Test from './components/Test';
+import Home from './pages/Home';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
 
         <main className="flex-1">
           <Routes>
-            <Route path="/" element={<Test />} />
+            <Route path="/*" element={<Home />} />
             <Route path="/connect/*" element={<Connect />} />
           </Routes>
         </main>

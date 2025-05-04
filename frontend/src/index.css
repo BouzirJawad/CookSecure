@@ -34,7 +34,7 @@ html{
   }
 
   option{
-    @apply font-light text-[#2c2e45]
+    @apply font-light text-white
   }
 
   .drop-menu{
