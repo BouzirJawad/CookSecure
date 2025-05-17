@@ -1,21 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Profile } from "../icons/Profile";
 import { Link } from "react-router-dom";
+import { useAuth } from "../server/AuthContext"; // 👈 Use AuthContext
 
 function Header() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    try {
-      const userData = JSON.parse(localStorage.getItem("user"));
-      if (userData) {
-        setUser(userData);
-        console.log("Parsed user:", userData);
-      }
-    } catch (err) {
-      console.error("Failed to parse user:", err);
-    }
-  }, []);
+  const { user, logout } = useAuth(); // 👈 Get user & logout from context
 
   return (
     <div>
@@ -25,20 +14,23 @@ function Header() {
             <span className="text-[#00FBFF]">Cook</span>Secure
           </p>
         </div>
-        <div className="ml-auto ">
+        <div className="ml-auto">
           {user ? (
             <div className="flex gap-5">
-              <button className="h-fit text-center place-content-around flex items-center gap-3 font-bold bg-[#00EEFF]">
+              <button className="h-fit text-center place-content-around flex items-center gap-3 font-bold bg-[#00EEFF] px-3 py-1 rounded">
                 <Profile className="text-xl" />
                 {user.username}
               </button>
-              <button className="h-fit text-center place-content-around flex items-center gap-3 font-bold bg-[#00EEFF]">
+              <button
+                onClick={logout}
+                className="h-fit text-center place-content-around flex items-center gap-3 font-bold bg-[#00EEFF] px-3 py-1 rounded"
+              >
                 Log out
               </button>
             </div>
           ) : (
             <Link to={`/connect/login`}>
-              <button className="h-fit text-center place-content-around flex items-center gap-3 font-bold bg-[#00EEFF]">
+              <button className="h-fit text-center place-content-around flex items-center gap-3 font-bold bg-[#00EEFF] px-3 py-1 rounded">
                 <Profile className="text-xl" />
                 Login
               </button>

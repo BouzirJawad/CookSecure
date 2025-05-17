@@ -11,7 +11,6 @@ function Home() {
   
     useEffect(() => {
       const userData = JSON.parse(localStorage.getItem("user"));
-      console.log(userData)
       if (userData) {
         setUser(userData);
       }
@@ -19,7 +18,7 @@ function Home() {
     }, []);
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen min-w-screen">
       <div
         style={{ backgroundImage: `url(${mbg})` }}
         className="absolute inset-0 bg-center bg-fixed bg-cover -z-10"

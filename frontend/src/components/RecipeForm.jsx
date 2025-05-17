@@ -23,7 +23,7 @@ function RecipeForm({ onClose, reload }) {
     onSubmit: async (values, { resetForm }) => {
       try {
         await axios.post("http://localhost:7460/recipes", values);
-        toast.success("Recipe added successfully", { duration: 3000 });
+        toast.success("Recipe added successfully", { duration: 1000 });
         setTimeout(() => {
           reload()
           onClose();
@@ -63,8 +63,6 @@ function RecipeForm({ onClose, reload }) {
 
       const ingredientArray = Object.values(ingredientsObj || {});
 
-      console.log("Fetched ingredients:", ingredientArray);
-
       return ingredientArray
         .filter((item) =>
           inputValue
@@ -90,7 +88,6 @@ function RecipeForm({ onClose, reload }) {
 
       const countriesArray = Object.values(countriesObj || {});
 
-      console.log("Fetched countries:", countriesArray);
 
       return countriesArray
         .filter((item) =>

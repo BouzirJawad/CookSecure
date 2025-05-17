@@ -5,8 +5,11 @@ import { loginSchema } from "../schemas/LoginSchema";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useAuth } from "../server/AuthContext"; // adjust path if needed
+
 
 function Login() {
+  const { login } = useAuth(); // get the login function to set user in context
   const navigate = useNavigate();
   const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
     useFormik({
@@ -32,7 +35,8 @@ function Login() {
 
       if (res.data.length > 0) {
         const userData = res.data[0]
-        localStorage.setItem("User", JSON.stringify(userData))
+        localStorage.setItem("user", JSON.stringify(userData));
+        login(userData);
         toast.success("Login successful !", { duration: 2000 });
         navigate("/")
       } else {

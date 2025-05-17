@@ -45,7 +45,7 @@ function Register() {
           isAdmin: values.isAdmin,
         });
         
-        toast.success("Registering successful!", { duration: 3000 });
+        toast.success("Registering successful!", { duration: 1000 });
         navigate("/connect/login")
       }
     } catch (err) {
