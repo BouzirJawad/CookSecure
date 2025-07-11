@@ -7,7 +7,7 @@ function FilterBar({
   setSearchTerm,
   onResetFilter,
 }) {
-  const types = ["Main", "Dessert", "Snack", "Soup"]; // Or whatever your actual types are
+  const types = ["Main", "Dessert", "Snack", "Soup"];
   const origins = [
     "American",
     "British",
